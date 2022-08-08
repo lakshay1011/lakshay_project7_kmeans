@@ -1,13 +1,13 @@
 
 import numpy as np
 from flask import Flask, request, jsonify, render_template
-from flask_ngrok import run_with_ngrok
+#from flask_ngrok import run_with_ngrok
 import pickle
 
 
 app = Flask(__name__)
 model = pickle.load(open('kmeans_project7.pkl','rb'))   
-run_with_ngrok(app)
+#run_with_ngrok(app)
 
 @app.route('/')
 def home():
@@ -41,4 +41,5 @@ def predict():
   return render_template('index.html', prediction_text='Model  has predicted  : {}'.format(result))
 
 
-app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
